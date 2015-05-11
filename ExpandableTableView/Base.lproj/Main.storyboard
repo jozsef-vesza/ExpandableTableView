@@ -30,19 +30,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="125" id="7gF-YO-ll0"/>
-                                                <constraint firstAttribute="height" constant="125" id="9GK-Ve-eaJ"/>
-                                                <constraint firstAttribute="height" constant="125" id="mu0-sg-284"/>
                                                 <constraint firstAttribute="centerY" secondItem="ZSR-Sy-l3V" secondAttribute="centerY" id="sK6-zy-2yi"/>
                                                 <constraint firstAttribute="centerX" secondItem="ZSR-Sy-l3V" secondAttribute="centerX" id="x24-YA-D4j"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="7gF-YO-ll0"/>
-                                                    <exclude reference="9GK-Ve-eaJ"/>
-                                                    <exclude reference="mu0-sg-284"/>
-                                                </mask>
-                                            </variation>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pps-0V-JzU">
                                             <rect key="frame" x="0.0" y="125" width="600" height="0.0"/>
@@ -63,22 +53,14 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Pps-0V-JzU" firstAttribute="top" secondItem="XqI-r5-2GQ" secondAttribute="bottom" id="0Z9-Sl-13u"/>
                                         <constraint firstItem="Pps-0V-JzU" firstAttribute="top" secondItem="XqI-r5-2GQ" secondAttribute="bottom" id="4JJ-HG-r5f"/>
                                         <constraint firstAttribute="trailing" secondItem="XqI-r5-2GQ" secondAttribute="trailing" id="bvj-ss-7TK"/>
                                         <constraint firstAttribute="trailing" secondItem="Pps-0V-JzU" secondAttribute="trailing" id="dHt-R3-hgr"/>
                                         <constraint firstItem="XqI-r5-2GQ" firstAttribute="top" secondItem="L7w-lV-7B2" secondAttribute="top" id="faC-bC-gWp"/>
                                         <constraint firstItem="Pps-0V-JzU" firstAttribute="leading" secondItem="L7w-lV-7B2" secondAttribute="leading" id="kbt-4I-rGL"/>
                                         <constraint firstItem="XqI-r5-2GQ" firstAttribute="leading" secondItem="L7w-lV-7B2" secondAttribute="leading" id="okX-OL-gR7"/>
-                                        <constraint firstItem="Pps-0V-JzU" firstAttribute="top" secondItem="XqI-r5-2GQ" secondAttribute="bottom" id="saA-ri-Cej"/>
                                         <constraint firstAttribute="bottom" secondItem="Pps-0V-JzU" secondAttribute="bottom" id="thk-ST-t5q"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="0Z9-Sl-13u"/>
-                                            <exclude reference="saA-ri-Cej"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="detailTitleLabel" destination="5JI-lr-69F" id="Sh1-Fm-udy"/>
