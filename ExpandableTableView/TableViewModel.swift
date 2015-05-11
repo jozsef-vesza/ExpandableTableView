@@ -21,7 +21,7 @@ struct TableViewModel {
         "Detail 1",
         "Detail 2",
     ]
-
+    
     var count: Int {
         return mainModel.count
     }

@@ -18,7 +18,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B4e-91-pmg" id="L7w-lV-7B2">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="XqI-r5-2GQ">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XqI-r5-2GQ">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSR-Sy-l3V">
@@ -31,12 +31,16 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="125" id="7gF-YO-ll0"/>
+                                                <constraint firstAttribute="height" constant="125" id="9GK-Ve-eaJ"/>
+                                                <constraint firstAttribute="height" constant="125" id="mu0-sg-284"/>
                                                 <constraint firstAttribute="centerY" secondItem="ZSR-Sy-l3V" secondAttribute="centerY" id="sK6-zy-2yi"/>
                                                 <constraint firstAttribute="centerX" secondItem="ZSR-Sy-l3V" secondAttribute="centerX" id="x24-YA-D4j"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="7gF-YO-ll0"/>
+                                                    <exclude reference="9GK-Ve-eaJ"/>
+                                                    <exclude reference="mu0-sg-284"/>
                                                 </mask>
                                             </variation>
                                         </view>
@@ -60,6 +64,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Pps-0V-JzU" firstAttribute="top" secondItem="XqI-r5-2GQ" secondAttribute="bottom" id="0Z9-Sl-13u"/>
+                                        <constraint firstItem="Pps-0V-JzU" firstAttribute="top" secondItem="XqI-r5-2GQ" secondAttribute="bottom" id="4JJ-HG-r5f"/>
                                         <constraint firstAttribute="trailing" secondItem="XqI-r5-2GQ" secondAttribute="trailing" id="bvj-ss-7TK"/>
                                         <constraint firstAttribute="trailing" secondItem="Pps-0V-JzU" secondAttribute="trailing" id="dHt-R3-hgr"/>
                                         <constraint firstItem="XqI-r5-2GQ" firstAttribute="top" secondItem="L7w-lV-7B2" secondAttribute="top" id="faC-bC-gWp"/>
@@ -70,6 +75,7 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="0Z9-Sl-13u"/>
                                             <exclude reference="saA-ri-Cej"/>
                                         </mask>
                                     </variation>
