@@ -18,11 +18,11 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B4e-91-pmg" id="L7w-lV-7B2">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XqI-r5-2GQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="81"/>
+                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="XqI-r5-2GQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSR-Sy-l3V">
-                                                    <rect key="frame" x="279" y="30" width="42" height="21"/>
+                                                    <rect key="frame" x="279" y="52" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -30,15 +30,21 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstAttribute="height" constant="125" id="7gF-YO-ll0"/>
                                                 <constraint firstAttribute="centerY" secondItem="ZSR-Sy-l3V" secondAttribute="centerY" id="sK6-zy-2yi"/>
                                                 <constraint firstAttribute="centerX" secondItem="ZSR-Sy-l3V" secondAttribute="centerX" id="x24-YA-D4j"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="7gF-YO-ll0"/>
+                                                </mask>
+                                            </variation>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pps-0V-JzU">
-                                            <rect key="frame" x="0.0" y="81" width="600" height="44"/>
+                                            <rect key="frame" x="0.0" y="125" width="600" height="0.0"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5JI-lr-69F">
-                                                    <rect key="frame" x="279" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="279" y="-11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -46,21 +52,27 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.18823531269999999" green="0.64313727620000005" blue="0.82745105029999999" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="44" id="1w1-7l-E5x"/>
+                                                <constraint firstAttribute="height" id="1w1-7l-E5x"/>
                                                 <constraint firstAttribute="centerX" secondItem="5JI-lr-69F" secondAttribute="centerX" id="bQa-0e-MGJ"/>
                                                 <constraint firstAttribute="centerY" secondItem="5JI-lr-69F" secondAttribute="centerY" id="hu5-Z6-zxB"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Pps-0V-JzU" firstAttribute="top" secondItem="XqI-r5-2GQ" secondAttribute="bottom" id="Y9p-hA-Tv6"/>
+                                        <constraint firstItem="Pps-0V-JzU" firstAttribute="top" secondItem="XqI-r5-2GQ" secondAttribute="bottom" id="0Z9-Sl-13u"/>
                                         <constraint firstAttribute="trailing" secondItem="XqI-r5-2GQ" secondAttribute="trailing" id="bvj-ss-7TK"/>
                                         <constraint firstAttribute="trailing" secondItem="Pps-0V-JzU" secondAttribute="trailing" id="dHt-R3-hgr"/>
                                         <constraint firstItem="XqI-r5-2GQ" firstAttribute="top" secondItem="L7w-lV-7B2" secondAttribute="top" id="faC-bC-gWp"/>
                                         <constraint firstItem="Pps-0V-JzU" firstAttribute="leading" secondItem="L7w-lV-7B2" secondAttribute="leading" id="kbt-4I-rGL"/>
                                         <constraint firstItem="XqI-r5-2GQ" firstAttribute="leading" secondItem="L7w-lV-7B2" secondAttribute="leading" id="okX-OL-gR7"/>
+                                        <constraint firstItem="Pps-0V-JzU" firstAttribute="top" secondItem="XqI-r5-2GQ" secondAttribute="bottom" id="saA-ri-Cej"/>
                                         <constraint firstAttribute="bottom" secondItem="Pps-0V-JzU" secondAttribute="bottom" id="thk-ST-t5q"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="saA-ri-Cej"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="detailTitleLabel" destination="5JI-lr-69F" id="Sh1-Fm-udy"/>
