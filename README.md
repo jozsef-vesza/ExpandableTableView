@@ -7,4 +7,4 @@ Current status:
 
 For details, please see [this](http://stackoverflow.com/questions/30078267/dynamically-size-table-view-cells-using-auto-layout-constraints) Stack Overflow question.
 
-[1]: http://i.imgur.com/iy5mTOI.gif
+[1]: http://i.imgur.com/UDq2ams.gif
