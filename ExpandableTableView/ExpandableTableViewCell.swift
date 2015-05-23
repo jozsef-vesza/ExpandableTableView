@@ -9,12 +9,25 @@
 import UIKit
 
 let detailViewDefaultHeight: CGFloat = 44
+let lowLayoutPriority: Float = 250
+let highLayoutPriority: Float = 999
 
 class ExpandableTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var mainTitleLabel: UILabel!
     @IBOutlet private weak var detailTitleLabel: UILabel!
     @IBOutlet private weak var detailViewHeightConstraint: NSLayoutConstraint!
+    
+    var showsDetails = false {
+        didSet {
+            detailViewHeightConstraint.priority = showsDetails ? lowLayoutPriority : highLayoutPriority
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        detailViewHeightConstraint.constant = 0
+    }
     
     var mainTitle: String! {
         didSet {
@@ -25,14 +38,6 @@ class ExpandableTableViewCell: UITableViewCell {
     var detailTitle: String! {
         didSet {
             detailTitleLabel.text = detailTitle
-        }
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        detailViewHeightConstraint.constant = selected ? detailViewDefaultHeight : 0
-        UIView.animateWithDuration(0.3) {
-            self.layoutIfNeeded()
         }
     }
 }

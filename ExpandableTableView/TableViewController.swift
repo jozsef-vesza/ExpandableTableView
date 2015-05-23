@@ -15,9 +15,22 @@ class TableViewController: UITableViewController {
     
     let viewModel = TableViewModel()
     
+    var expandedIndexPath: NSIndexPath? {
+        didSet {
+            switch expandedIndexPath {
+            case .Some(let index):
+                tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
+            case .None:
+                tableView.reloadRowsAtIndexPaths([oldValue!], withRowAnimation: UITableViewRowAnimation.Automatic)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset.top = statusbarHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 125
     }
     
     // MARK: - Table view data source
@@ -31,18 +44,30 @@ class TableViewController: UITableViewController {
         
         cell.mainTitle = viewModel.mainTitleForRow(indexPath.row)
         cell.detailTitle = viewModel.detailTitleForRow(indexPath.row)
+        
+        switch expandedIndexPath {
+        case .Some(let expandedIndexPath) where expandedIndexPath == indexPath:
+            cell.showsDetails = true
+        default:
+            cell.showsDetails = false
+        }
+        
         return cell
     }
     
     // MARK: - Table view delegate
     
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        if let selectedIndex = tableView.indexPathForSelectedRow() where selectedIndex == indexPath {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            return nil
+        switch expandedIndexPath {
+        case .Some(_) where expandedIndexPath == indexPath:
+            expandedIndexPath = nil
+        case .Some(let expandedIndex) where expandedIndex != indexPath:
+            expandedIndexPath = nil
+            self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+        default:
+            expandedIndexPath = indexPath
         }
-        
-        return indexPath
     }
 }

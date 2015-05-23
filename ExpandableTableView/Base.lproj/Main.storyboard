@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BhW-kv-Bce">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BhW-kv-Bce">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Table View Controller-->
@@ -18,11 +18,14 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B4e-91-pmg" id="L7w-lV-7B2">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XqI-r5-2GQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="125"/>
+                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="XqI-r5-2GQ" userLabel="Main Container">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="81"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSR-Sy-l3V">
-                                                    <rect key="frame" x="279" y="52" width="42" height="21"/>
+                                                    <rect key="frame" x="279" y="30" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="q0G-Og-Ywp"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -30,15 +33,16 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="ZSR-Sy-l3V" secondAttribute="centerY" id="sK6-zy-2yi"/>
+                                                <constraint firstItem="ZSR-Sy-l3V" firstAttribute="top" secondItem="XqI-r5-2GQ" secondAttribute="top" constant="30" id="nKo-aB-lzn"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZSR-Sy-l3V" secondAttribute="bottom" constant="30" id="vzS-Z5-0nr"/>
                                                 <constraint firstAttribute="centerX" secondItem="ZSR-Sy-l3V" secondAttribute="centerX" id="x24-YA-D4j"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pps-0V-JzU">
-                                            <rect key="frame" x="0.0" y="125" width="600" height="0.0"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pps-0V-JzU" userLabel="Detail Container">
+                                            <rect key="frame" x="0.0" y="81" width="600" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5JI-lr-69F">
-                                                    <rect key="frame" x="279" y="-11" width="42" height="21"/>
+                                                    <rect key="frame" x="279" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -46,9 +50,10 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.18823531269999999" green="0.64313727620000005" blue="0.82745105029999999" alpha="1" colorSpace="deviceRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" id="1w1-7l-E5x"/>
+                                                <constraint firstAttribute="height" priority="999" constant="44" id="1w1-7l-E5x"/>
+                                                <constraint firstItem="5JI-lr-69F" firstAttribute="top" secondItem="Pps-0V-JzU" secondAttribute="top" priority="998" constant="11" id="8B5-HK-Hik"/>
                                                 <constraint firstAttribute="centerX" secondItem="5JI-lr-69F" secondAttribute="centerX" id="bQa-0e-MGJ"/>
-                                                <constraint firstAttribute="centerY" secondItem="5JI-lr-69F" secondAttribute="centerY" id="hu5-Z6-zxB"/>
+                                                <constraint firstAttribute="bottom" secondItem="5JI-lr-69F" secondAttribute="bottom" priority="998" constant="12" id="qNc-F5-jkA"/>
                                             </constraints>
                                         </view>
                                     </subviews>
