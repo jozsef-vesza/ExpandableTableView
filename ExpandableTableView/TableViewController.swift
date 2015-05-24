@@ -31,6 +31,7 @@ class TableViewController: UITableViewController {
         tableView.contentInset.top = statusbarHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 125
+        tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
     // MARK: - Table view data source
