@@ -31,73 +31,83 @@ The main idea is the following:
 
 I had to modify my `UITableViewCell` subclass to support these operations:
 
-    // `showDetails` is exposed to control, whether the cell should be expanded
-    var showsDetails = false {
-        didSet {
-            detailViewHeightConstraint.priority = showsDetails ? lowLayoutPriority : highLayoutPriority
-        }
+```swift
+// `showDetails` is exposed to control, whether the cell should be expanded
+var showsDetails = false {
+    didSet {
+        detailViewHeightConstraint.priority = showsDetails ? lowLayoutPriority : highLayoutPriority
     }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        detailViewHeightConstraint.constant = 0
-    }
+}
+
+override func awakeFromNib() {
+    super.awakeFromNib()
+    detailViewHeightConstraint.constant = 0
+}
+```
 
 To trigger the behavior, we must override `tableView(_:didSelectRowAtIndexPath:)`:
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        
-        switch expandedIndexPath {
-        case .Some(_) where expandedIndexPath == indexPath:
-            expandedIndexPath = nil
-        case .Some(let expandedIndex) where expandedIndex != indexPath:
-            expandedIndexPath = nil
-            self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
-        default:
-            expandedIndexPath = indexPath
-        }
+```swift
+override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    
+    switch expandedIndexPath {
+    case .Some(_) where expandedIndexPath == indexPath:
+        expandedIndexPath = nil
+    case .Some(let expandedIndex) where expandedIndex != indexPath:
+        expandedIndexPath = nil
+        self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+    default:
+        expandedIndexPath = indexPath
     }
+}
+```
 
 Notice that I've introduced `expandedIndexPath` to keep track of our currently expanded index:
 
-    var expandedIndexPath: NSIndexPath? {
-        didSet {
-            switch expandedIndexPath {
-            case .Some(let index):
-                tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
-            case .None:
-                tableView.reloadRowsAtIndexPaths([oldValue!], withRowAnimation: UITableViewRowAnimation.Automatic)
-            }
+```swift
+var expandedIndexPath: NSIndexPath? {
+    didSet {
+        switch expandedIndexPath {
+        case .Some(let index):
+            tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
+        case .None:
+            tableView.reloadRowsAtIndexPaths([oldValue!], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
+}
+```
 
 Setting the property will result in the table view reloading the appropriate indexes, giving us a perfect opportunity to tell the cell, if it should expand:
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ExpandableTableViewCell
-        
-        cell.mainTitle = viewModel.mainTitleForRow(indexPath.row)
-        cell.detailTitle = viewModel.detailTitleForRow(indexPath.row)
-        
-        switch expandedIndexPath {
-        case .Some(let expandedIndexPath) where expandedIndexPath == indexPath:
-            cell.showsDetails = true
-        default:
-            cell.showsDetails = false
-        }
-        
-        return cell
+```swift
+override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ExpandableTableViewCell
+    
+    cell.mainTitle = viewModel.mainTitleForRow(indexPath.row)
+    cell.detailTitle = viewModel.detailTitleForRow(indexPath.row)
+    
+    switch expandedIndexPath {
+    case .Some(let expandedIndexPath) where expandedIndexPath == indexPath:
+        cell.showsDetails = true
+    default:
+        cell.showsDetails = false
     }
+    
+    return cell
+}
+```
 
 The last step is to enable self-sizing in `viewDidLoad()`:
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.contentInset.top = statusbarHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 125
-    }
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    tableView.contentInset.top = statusbarHeight
+    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.estimatedRowHeight = 125
+}
+```
 
 ### Result
 
