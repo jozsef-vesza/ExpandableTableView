@@ -13,7 +13,7 @@ let statusbarHeight: CGFloat = 20
 
 class TableViewController: UITableViewController {
     
-    let viewModel = TableViewModel()
+    var viewModel: TableViewModel!
     
     var expandedIndexPath: NSIndexPath? {
         didSet {
@@ -25,6 +25,8 @@ class TableViewController: UITableViewController {
             }
         }
     }
+    
+    // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +45,14 @@ class TableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ExpandableTableViewCell
         
-        cell.mainTitle = viewModel.mainTitleForRow(indexPath.row)
-        cell.detailTitle = viewModel.detailTitleForRow(indexPath.row)
+        cell.mainTitle = viewModel.titleForRow(indexPath.row)
+        cell.indexPath = indexPath
+        cell.detailButtonActionHandler = { [unowned self] button, index in
+            
+            if let destinationViewController = InjectionContainer.sharedContainer.detailViewControllerWithParameters(["selectedIndex": index.row]) {
+                self.presentViewController(destinationViewController, animated: true, completion: nil)
+            }
+        }
         
         switch expandedIndexPath {
         case .Some(let expandedIndexPath) where expandedIndexPath == indexPath:

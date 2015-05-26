@@ -8,29 +8,24 @@
 
 import UIKit
 
-struct TableViewModel {
+class TableViewModel: NSObject {
     
-    private let mainModel = [
-        "Item 0",
-        "Item 1",
-        "Item 2",
-    ]
+    let photoStore: PhotoStore
     
-    private let detailModel = [
-        "Detail 0",
-        "Detail 1",
-        "Detail 2",
-    ]
+    init(photoStore: PhotoStore) {
+        self.photoStore = photoStore
+        super.init()
+    }
     
     var count: Int {
-        return mainModel.count
+        return photoStore.photos.count
     }
     
-    func mainTitleForRow(row: Int) -> String {
-        return mainModel[row]
+    func photoForRow(row: Int) -> Photo {
+        return photoStore.photos[row]
     }
     
-    func detailTitleForRow(row: Int) -> String {
-        return detailModel[row]
+    func titleForRow(row: Int) -> String {
+        return photoStore.photos[row].title
     }
 }
