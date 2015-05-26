@@ -8,6 +8,7 @@
 
 import UIKit
 
+let storyboardId = "Main"
 let mainViewControllerId = "MainViewController"
 let detailViewControllerId = "DetailViewController"
 
@@ -27,9 +28,9 @@ class InjectionContainer: NSObject {
         return DetailViewModel(photoStore: self.photoStore)
         }()
     
-    func mainViewControllerWithParameters(parameters: [String : AnyObject]?) -> TableViewController? {
+    func mainViewControllerWithViewModelParameters(parameters: [String : AnyObject]?) -> TableViewController? {
         
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(mainViewControllerId) as? TableViewController {
+        if let viewController = UIStoryboard(name: storyboardId, bundle: nil).instantiateViewControllerWithIdentifier(mainViewControllerId) as? TableViewController {
             
             viewController.viewModel = self.mainViewModel
             return viewController
@@ -38,8 +39,8 @@ class InjectionContainer: NSObject {
         return nil
     }
     
-    func detailViewControllerWithParameters(parameters: [String : AnyObject]?) -> DetailViewController? {
-        if let detailController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier(detailViewControllerId) as? DetailViewController {
+    func detailViewControllerWithViewModelParameters(parameters: [String : AnyObject]?) -> DetailViewController? {
+        if let detailController = UIStoryboard(name: storyboardId, bundle: nil).instantiateViewControllerWithIdentifier(detailViewControllerId) as? DetailViewController {
             
             detailController.viewModel = self.detailViewModel
             

@@ -49,7 +49,7 @@ class TableViewController: UITableViewController {
         cell.indexPath = indexPath
         cell.detailButtonActionHandler = { [unowned self] button, index in
             
-            if let destinationViewController = InjectionContainer.sharedContainer.detailViewControllerWithParameters(["selectedIndex": index.row]) {
+            if let destinationViewController = InjectionContainer.sharedContainer.detailViewControllerWithViewModelParameters(["selectedIndex": index.row]) {
                 self.presentViewController(destinationViewController, animated: true, completion: nil)
             }
         }
