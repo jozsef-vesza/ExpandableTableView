@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoStore {
+class PhotoStore: NSObject {
     
     static let sharedInstance = PhotoStore()
     

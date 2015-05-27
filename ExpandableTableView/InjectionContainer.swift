@@ -16,41 +16,54 @@ class InjectionContainer: NSObject {
     
     static let sharedContainer = InjectionContainer()
     
-    lazy var photoStore: PhotoStore = {
+    dynamic lazy var photoStore: PhotoStore = {
         return PhotoStore.sharedInstance
         }()
     
-    lazy var mainViewModel: TableViewModel = { [unowned self] in
+    dynamic lazy var mainViewModel: TableViewModel = { [unowned self] in
         return TableViewModel(photoStore: self.photoStore)
         }()
     
-    lazy var detailViewModel: DetailViewModel = { [unowned self] in
+    dynamic lazy var detailViewModel: DetailViewModel = { [unowned self] in
         return DetailViewModel(photoStore: self.photoStore)
         }()
     
-    func mainViewControllerWithViewModelParameters(parameters: [String : AnyObject]?) -> TableViewController? {
-        
+    dynamic var mainViewController: TableViewController? {
+    
         if let viewController = UIStoryboard(name: storyboardId, bundle: nil).instantiateViewControllerWithIdentifier(mainViewControllerId) as? TableViewController {
+        
+            viewController.viewModel = self.resolveByKey("mainViewModel", withParameters: nil) as! TableViewModel
             
-            viewController.viewModel = self.mainViewModel
             return viewController
         }
         
         return nil
     }
     
-    func detailViewControllerWithViewModelParameters(parameters: [String : AnyObject]?) -> DetailViewController? {
-        if let detailController = UIStoryboard(name: storyboardId, bundle: nil).instantiateViewControllerWithIdentifier(detailViewControllerId) as? DetailViewController {
+    dynamic var detailViewController: DetailViewController? {
+    
+        if let viewController = UIStoryboard(name: storyboardId, bundle: nil).instantiateViewControllerWithIdentifier(detailViewControllerId) as? DetailViewController {
             
-            detailController.viewModel = self.detailViewModel
+            viewController.viewModel = self.resolveByKey("detailViewModel", withParameters: nil) as! DetailViewModel
+            
+            return viewController
+        }
+        
+        return nil
+    }
+    
+    func resolveByKey(key: String, withParameters parameters: [String: AnyObject]?) -> AnyObject? {
+        
+        if let resolved: AnyObject = self.valueForKey(key) {
             
             if let parameters = parameters {
-                for (key, value) in parameters {
-                    detailController.viewModel.setValue(value, forKey: key)
+                
+                map(parameters) { (key, value) in
+                    resolved.setValue(value, forKey: key)
                 }
             }
             
-            return detailController
+            return resolved
         }
         
         return nil

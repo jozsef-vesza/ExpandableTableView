@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        if let mainViewController = InjectionContainer.sharedContainer.mainViewControllerWithViewModelParameters(nil), let window = self.window {
+        if let mainViewController = InjectionContainer.sharedContainer.resolveByKey("mainViewController", withParameters: nil) as? TableViewController, let window = self.window {
             window.rootViewController = mainViewController
             window.makeKeyAndVisible()
         }
