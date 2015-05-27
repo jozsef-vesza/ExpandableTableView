@@ -20,19 +20,18 @@ class ToDetailViewPresentationController: NSObject, UIViewControllerAnimatedTran
         let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! DetailViewController
         let finalFrame = transitionContext.finalFrameForViewController(toViewController)
         let containerView = transitionContext.containerView()
-
-        let xScale = fromViewController.buttonRect!.width / finalFrame.width
-        let yScale = fromViewController.buttonRect!.height / finalFrame.height
         
-        toViewController.view.frame.origin = fromViewController.buttonRect!.origin
-        toViewController.view.transform = CGAffineTransformMakeScale(xScale, yScale)
+        toViewController.view.frame = fromViewController.buttonRect!
+        toViewController.view.transform = CGAffineTransformMakeScale(0.0, 0.0)
+        toViewController.view.alpha = 0
         containerView.addSubview(toViewController.view)
         
         UIView.animateWithDuration(transitionDuration(transitionContext),
             animations: {
-                toViewController.view.transform = CGAffineTransformIdentity
-                toViewController.view.frame.origin = finalFrame.origin
-            }) { (finished) -> Void in
+                toViewController.view.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                toViewController.view.frame = finalFrame
+                toViewController.view.alpha = 1
+            }) { finished in
                 transitionContext.completeTransition(true)
         }
     }

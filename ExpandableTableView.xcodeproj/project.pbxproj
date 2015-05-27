@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040517111B15F15E00803ED2 /* ToDetailViewPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040517101B15F15E00803ED2 /* ToDetailViewPresentationController.swift */; };
+		045E05D21B160943001F4147 /* BackToMainViewPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045E05D11B160943001F4147 /* BackToMainViewPresentationController.swift */; };
 		048632841B147D3500F08C74 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048632831B147D3500F08C74 /* Photo.swift */; };
 		048632861B14812700F08C74 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048632851B14812700F08C74 /* DetailViewModel.swift */; };
 		048632881B14816D00F08C74 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048632871B14816D00F08C74 /* DetailViewController.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		040517101B15F15E00803ED2 /* ToDetailViewPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDetailViewPresentationController.swift; sourceTree = "<group>"; };
+		045E05D11B160943001F4147 /* BackToMainViewPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackToMainViewPresentationController.swift; sourceTree = "<group>"; };
 		048632831B147D3500F08C74 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		048632851B14812700F08C74 /* DetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		048632871B14816D00F08C74 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				040517101B15F15E00803ED2 /* ToDetailViewPresentationController.swift */,
+				045E05D11B160943001F4147 /* BackToMainViewPresentationController.swift */,
 			);
 			name = Transitions;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				04897FFB1AF9F6D700A88017 /* TableViewController.swift in Sources */,
 				04897FFE1AF9F71900A88017 /* ExpandableTableViewCell.swift in Sources */,
 				048980011AF9F76D00A88017 /* TableViewModel.swift in Sources */,
+				045E05D21B160943001F4147 /* BackToMainViewPresentationController.swift in Sources */,
 				048632841B147D3500F08C74 /* Photo.swift in Sources */,
 				048632881B14816D00F08C74 /* DetailViewController.swift in Sources */,
 			);

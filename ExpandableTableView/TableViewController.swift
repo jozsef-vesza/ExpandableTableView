@@ -15,6 +15,7 @@ let statusbarHeight: CGFloat = 20
 class TableViewController: UITableViewController {
     
     let toDetailViewController = ToDetailViewPresentationController()
+    let backToMainViewController = BackToMainViewPresentationController()
     
     var viewModel: TableViewModel!
     var buttonRect: CGRect?
@@ -97,7 +98,12 @@ class TableViewController: UITableViewController {
 }
 
 extension TableViewController: UIViewControllerTransitioningDelegate {
+    
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return toDetailViewController
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return backToMainViewController
     }
 }
