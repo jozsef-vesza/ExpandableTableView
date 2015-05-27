@@ -14,8 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
         if
             let mainViewController = TableViewController.instanceWithViewModel(TableViewModel(photoStore: PhotoStore.sharedInstance)),
             let window = self.window {
