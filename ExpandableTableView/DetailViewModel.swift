@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewModel: NSObject {
+class DetailViewModel: NSObject, ViewModelType {
     
     let photoStore: PhotoStore
     let selectedIndex: Int

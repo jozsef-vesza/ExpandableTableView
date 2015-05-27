@@ -33,15 +33,6 @@ class TableViewController: UITableViewController {
         }
     }
     
-    class func tableViewControllerWithViewModel(viewModel: TableViewModel) -> TableViewController? {
-        if let instance = self.instance() as? TableViewController {
-            instance.viewModel = viewModel
-            return instance
-        }
-        
-        return nil
-    }
-    
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
@@ -65,7 +56,7 @@ class TableViewController: UITableViewController {
         cell.indexPath = indexPath
         cell.detailButtonActionHandler = { [unowned self] button, index in
             
-            if let destination = DetailViewController.detailViewControllerWithViewModel(DetailViewModel(photoStore: self.viewModel.photoStore, selectedIndex: index.row)) {
+            if let destination = DetailViewController.instanceWithViewModel(DetailViewModel(photoStore: self.viewModel.photoStore, selectedIndex: index.row)) {
             
                 let newRect = cell.convertRect(button.frame, toView: nil)
                 self.buttonRect = newRect
@@ -111,5 +102,17 @@ extension TableViewController: UIViewControllerTransitioningDelegate {
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return backToMainViewController
+    }
+}
+
+extension TableViewController: ViewControllerInitializable {
+    
+    static func instanceWithViewModel(viewModel: TableViewModel) -> TableViewController? {
+        if let instance = self.instance() as? TableViewController {
+            instance.viewModel = viewModel
+            return instance
+        }
+        
+        return nil
     }
 }

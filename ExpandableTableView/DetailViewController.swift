@@ -15,15 +15,6 @@ class DetailViewController: UIViewController {
     
     var viewModel: DetailViewModel!
     
-    class func detailViewControllerWithViewModel(viewModel: DetailViewModel) -> DetailViewController? {
-        if let instance = self.instance() as? DetailViewController {
-            instance.viewModel = viewModel
-            return instance
-        }
-        
-        return nil
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         authorName.text = viewModel.authorName
@@ -32,5 +23,17 @@ class DetailViewController: UIViewController {
     
     @IBAction private func doneButtonPressed(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+extension DetailViewController: ViewControllerInitializable {
+    
+    static func instanceWithViewModel(viewModel: DetailViewModel) -> DetailViewController? {
+        if let instance = self.instance() as? DetailViewController {
+            instance.viewModel = viewModel
+            return instance
+        }
+        
+        return nil
     }
 }

@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         if
-            let mainViewController = TableViewController.tableViewControllerWithViewModel(TableViewModel(photoStore: PhotoStore.sharedInstance)),
+            let mainViewController = TableViewController.instanceWithViewModel(TableViewModel(photoStore: PhotoStore.sharedInstance)),
             let window = self.window {
             window.rootViewController = mainViewController
             window.makeKeyAndVisible()

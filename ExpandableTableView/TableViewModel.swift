@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewModel: NSObject {
+class TableViewModel: NSObject, ViewModelType {
     
     let photoStore: PhotoStore
     
