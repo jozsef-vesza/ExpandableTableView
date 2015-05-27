@@ -9,6 +9,7 @@
 import UIKit
 
 let cellIdentifier = "ExpandableCell"
+let detailSegueIdentifier = "showDetailSegue"
 let statusbarHeight: CGFloat = 20
 
 class TableViewController: UITableViewController {
@@ -36,6 +37,16 @@ class TableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == detailSegueIdentifier,
+            let destination = segue.destinationViewController as? DetailViewController,
+            let sender = sender as? ExpandableTableViewCell {
+            
+            let detailViewModel = DetailViewModel(photoStore: self.viewModel.photoStore, selectedIndex: sender.indexPath.row)
+            destination.viewModel = detailViewModel
+        }
+    }
+    
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,14 +59,7 @@ class TableViewController: UITableViewController {
         cell.mainTitle = viewModel.titleForRow(indexPath.row)
         cell.indexPath = indexPath
         cell.detailButtonActionHandler = { [unowned self] button, index in
-            
-            if let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DetailViewController") as? DetailViewController {
-            
-                let detailViewModel = DetailViewModel(photoStore: self.viewModel.photoStore, selectedIndex: index.row)
-                detailViewController.viewModel = detailViewModel
-                
-                self.presentViewController(detailViewController, animated: true, completion: nil)
-            }
+            self.performSegueWithIdentifier(detailSegueIdentifier, sender: cell)
         }
         
         switch expandedIndexPath {

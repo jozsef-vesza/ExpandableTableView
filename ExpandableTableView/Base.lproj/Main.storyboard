@@ -81,6 +81,9 @@
                             <outlet property="delegate" destination="BhW-kv-Bce" id="Zie-WA-fcR"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="OgP-yw-8fs" kind="show" identifier="showDetailSegue" id="16n-bM-vfP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yhx-ct-3g8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
