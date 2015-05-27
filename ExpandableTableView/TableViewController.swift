@@ -49,10 +49,12 @@ class TableViewController: UITableViewController {
         cell.indexPath = indexPath
         cell.detailButtonActionHandler = { [unowned self] button, index in
             
-            if let detailViewModel = InjectionContainer.sharedContainer.resolveByKey("detailViewModel", withParameters: ["selectedIndex": index.row]) as? DetailViewModel,
-                let destination = InjectionContainer.sharedContainer.resolveByKey("detailViewController", withParameters: ["viewModel" : detailViewModel]) as? DetailViewController {
-                    
-                self.presentViewController(destination, animated: true, completion: nil)
+            if let detailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("DetailViewController") as? DetailViewController {
+            
+                let detailViewModel = DetailViewModel(photoStore: self.viewModel.photoStore, selectedIndex: index.row)
+                detailViewController.viewModel = detailViewModel
+                
+                self.presentViewController(detailViewController, animated: true, completion: nil)
             }
         }
         

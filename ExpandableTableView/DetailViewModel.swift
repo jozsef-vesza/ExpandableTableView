@@ -11,10 +11,11 @@ import UIKit
 class DetailViewModel: NSObject {
     
     let photoStore: PhotoStore
-    dynamic var selectedIndex = 0
+    let selectedIndex: Int
     
-    init(photoStore: PhotoStore) {
+    init(photoStore: PhotoStore, selectedIndex: Int) {
         self.photoStore = photoStore
+        self.selectedIndex = selectedIndex
         super.init()
     }
     

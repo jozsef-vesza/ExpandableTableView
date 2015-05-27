@@ -31,8 +31,8 @@ class PhotoStore: NSObject {
     ]
     
     let photos = [
-        Photo(title: titles[0], withAuthor:authors[0], withImage:images[0]),
-        Photo(title:titles[1], withAuthor:authors[1], withImage:images[1]),
-        Photo(title:titles[2], withAuthor:authors[2], withImage:images[2]),
+        Photo(title: titles[0], withAuthor: authors[0], withImage: images[0]),
+        Photo(title: titles[1], withAuthor: authors[1], withImage: images[1]),
+        Photo(title: titles[2], withAuthor: authors[2], withImage: images[2]),
     ]
 }
