@@ -14,7 +14,10 @@ let statusbarHeight: CGFloat = 20
 
 class TableViewController: UITableViewController {
     
+    let toDetailViewController = ToDetailViewPresentationController()
+    
     var viewModel: TableViewModel!
+    var buttonRect: CGRect?
     
     var expandedIndexPath: NSIndexPath? {
         didSet {
@@ -41,9 +44,10 @@ class TableViewController: UITableViewController {
         if segue.identifier == detailSegueIdentifier,
             let destination = segue.destinationViewController as? DetailViewController,
             let sender = sender as? ExpandableTableViewCell {
-            
-            let detailViewModel = DetailViewModel(photoStore: self.viewModel.photoStore, selectedIndex: sender.indexPath.row)
-            destination.viewModel = detailViewModel
+                
+                let detailViewModel = DetailViewModel(photoStore: self.viewModel.photoStore, selectedIndex: sender.indexPath.row)
+                destination.viewModel = detailViewModel
+                destination.transitioningDelegate = self
         }
     }
     
@@ -59,6 +63,9 @@ class TableViewController: UITableViewController {
         cell.mainTitle = viewModel.titleForRow(indexPath.row)
         cell.indexPath = indexPath
         cell.detailButtonActionHandler = { [unowned self] button, index in
+            
+            let newRect = cell.convertRect(button.frame, toView: nil)
+            self.buttonRect = newRect
             self.performSegueWithIdentifier(detailSegueIdentifier, sender: cell)
         }
         
@@ -86,5 +93,11 @@ class TableViewController: UITableViewController {
         default:
             expandedIndexPath = indexPath
         }
+    }
+}
+
+extension TableViewController: UIViewControllerTransitioningDelegate {
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return toDetailViewController
     }
 }
