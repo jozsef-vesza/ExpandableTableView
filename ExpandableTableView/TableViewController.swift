@@ -14,8 +14,6 @@ let statusbarHeight: CGFloat = 20
 
 class TableViewController: UITableViewController {
     
-    // MARK: - Properties and setup
-    
     let toDetailViewController = ToDetailViewPresentationController()
     let backToMainViewController = BackToMainViewPresentationController()
     
