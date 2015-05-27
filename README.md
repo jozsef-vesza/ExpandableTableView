@@ -122,7 +122,7 @@ This was way harder than it should be. 😀 I really hope to see some improvemen
   [1]: http://pivotallabs.com/expandable-uitableviewcells/
   [2]: http://i.stack.imgur.com/LdlQK.png
   [3]: http://i.stack.imgur.com/gHkA6.png
-  [4]: http://i.stack.imgur.com/tdBLK.gif
+  [4]: http://i.imgur.com/31TVQr9.gif
 
 ## Misc
 
