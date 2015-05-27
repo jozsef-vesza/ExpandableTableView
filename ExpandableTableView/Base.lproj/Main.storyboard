@@ -7,7 +7,7 @@
         <!--Table View Controller-->
         <scene sceneID="WDc-qB-frF">
             <objects>
-                <tableViewController storyboardIdentifier="MainViewController" id="BhW-kv-Bce" customClass="TableViewController" customModule="ExpandableTableView" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TableViewController" id="BhW-kv-Bce" customClass="TableViewController" customModule="ExpandableTableView" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="126" sectionHeaderHeight="22" sectionFooterHeight="22" id="5ch-mr-4aY">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,7 +27,7 @@
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="q0G-Og-Ywp"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -81,9 +81,6 @@
                             <outlet property="delegate" destination="BhW-kv-Bce" id="Zie-WA-fcR"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <segue destination="OgP-yw-8fs" kind="show" identifier="showDetailSegue" id="16n-bM-vfP"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yhx-ct-3g8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -104,7 +101,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i11-Zi-97j">
                                 <rect key="frame" x="279" y="34" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TAa-J6-TqG">

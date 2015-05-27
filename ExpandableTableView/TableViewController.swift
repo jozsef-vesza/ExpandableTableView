@@ -14,6 +14,8 @@ let statusbarHeight: CGFloat = 20
 
 class TableViewController: UITableViewController {
     
+    // MARK: - Properties and setup
+    
     let toDetailViewController = ToDetailViewPresentationController()
     let backToMainViewController = BackToMainViewPresentationController()
     
@@ -31,6 +33,15 @@ class TableViewController: UITableViewController {
         }
     }
     
+    class func tableViewControllerWithViewModel(viewModel: TableViewModel) -> TableViewController? {
+        if let instance = self.instance() as? TableViewController {
+            instance.viewModel = viewModel
+            return instance
+        }
+        
+        return nil
+    }
+    
     // MARK: - Lifecycle methods
     
     override func viewDidLoad() {
@@ -39,17 +50,6 @@ class TableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 125
         tableView.tableFooterView = UIView(frame: CGRectZero)
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == detailSegueIdentifier,
-            let destination = segue.destinationViewController as? DetailViewController,
-            let sender = sender as? ExpandableTableViewCell {
-                
-                let detailViewModel = DetailViewModel(photoStore: self.viewModel.photoStore, selectedIndex: sender.indexPath.row)
-                destination.viewModel = detailViewModel
-                destination.transitioningDelegate = self
-        }
     }
     
     // MARK: - Table view data source
@@ -65,9 +65,15 @@ class TableViewController: UITableViewController {
         cell.indexPath = indexPath
         cell.detailButtonActionHandler = { [unowned self] button, index in
             
-            let newRect = cell.convertRect(button.frame, toView: nil)
-            self.buttonRect = newRect
-            self.performSegueWithIdentifier(detailSegueIdentifier, sender: cell)
+            if let destination = DetailViewController.detailViewControllerWithViewModel(DetailViewModel(photoStore: self.viewModel.photoStore, selectedIndex: index.row)) {
+            
+                let newRect = cell.convertRect(button.frame, toView: nil)
+                self.buttonRect = newRect
+                destination.transitioningDelegate = self
+                
+                self.presentViewController(destination, animated: true, completion: nil)
+            }
+            
         }
         
         switch expandedIndexPath {

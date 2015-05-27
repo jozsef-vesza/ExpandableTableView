@@ -21,6 +21,7 @@
 		04897FFB1AF9F6D700A88017 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04897FFA1AF9F6D700A88017 /* TableViewController.swift */; };
 		04897FFE1AF9F71900A88017 /* ExpandableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04897FFD1AF9F71900A88017 /* ExpandableTableViewCell.swift */; };
 		048980011AF9F76D00A88017 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048980001AF9F76D00A88017 /* TableViewModel.swift */; };
+		BB0342651B16524100F817D6 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0342641B16524100F817D6 /* ViewControllerExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		04897FFA1AF9F6D700A88017 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		04897FFD1AF9F71900A88017 /* ExpandableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandableTableViewCell.swift; sourceTree = "<group>"; };
 		048980001AF9F76D00A88017 /* TableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
+		BB0342641B16524100F817D6 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 		04897FD51AF9F68100A88017 /* ExpandableTableView */ = {
 			isa = PBXGroup;
 			children = (
+				BB0342631B16521D00F817D6 /* Extensions */,
 				0405170F1B15F14700803ED2 /* Transitions */,
 				048632821B147D2400F08C74 /* Model */,
 				048632891B14978F00F08C74 /* Data */,
@@ -190,6 +193,14 @@
 				048632851B14812700F08C74 /* DetailViewModel.swift */,
 			);
 			name = "View Models";
+			sourceTree = "<group>";
+		};
+		BB0342631B16521D00F817D6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BB0342641B16524100F817D6 /* ViewControllerExtensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0342651B16524100F817D6 /* ViewControllerExtensions.swift in Sources */,
 				040517111B15F15E00803ED2 /* ToDetailViewPresentationController.swift in Sources */,
 				04897FD91AF9F68200A88017 /* AppDelegate.swift in Sources */,
 				048632861B14812700F08C74 /* DetailViewModel.swift in Sources */,
