@@ -1,6 +1,10 @@
 # ExpandableTableView
 Example code for creating expandable table view cells using Auto Layout.
 
+## Framework
+
+This functionality is now available as a [framework](https://github.com/jozsef-vesza/ExpandingTableView).
+
 ## Current status:
 
 ![Current status][4]
