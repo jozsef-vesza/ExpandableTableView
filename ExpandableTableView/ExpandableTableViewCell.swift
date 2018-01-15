@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias ActionHandler = (UIButton, NSIndexPath) -> Void
+typealias ActionHandler = (UIButton, IndexPath) -> Void
 
 let detailViewDefaultHeight: CGFloat = 44
 let lowLayoutPriority: Float = 250
@@ -16,8 +16,8 @@ let highLayoutPriority: Float = 999
 
 class ExpandableTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var mainTitleLabel: UILabel!
-    @IBOutlet private weak var detailViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet fileprivate weak var mainTitleLabel: UILabel!
+    @IBOutlet fileprivate weak var detailViewHeightConstraint: NSLayoutConstraint!
     
     var showsDetails = false {
         didSet {
@@ -26,7 +26,7 @@ class ExpandableTableViewCell: UITableViewCell {
     }
     
     var detailButtonActionHandler: ActionHandler = { _ in }
-    var indexPath = NSIndexPath()
+    var indexPath = IndexPath()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,7 +39,7 @@ class ExpandableTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction private func didPressDetailButton(sender: UIButton) {
+    @IBAction fileprivate func didPressDetailButton(_ sender: UIButton) {
         detailButtonActionHandler(sender, indexPath)
     }
 }

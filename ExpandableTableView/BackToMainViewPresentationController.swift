@@ -10,32 +10,32 @@ import UIKit
 
 class BackToMainViewPresentationController: NSObject, UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! DetailViewController
-        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! TableViewController
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as! DetailViewController
+        let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as! TableViewController
         let finalFrame = toViewController.buttonRect!
-        let containerView = transitionContext.containerView()
+        let containerView = transitionContext.containerView
         
         containerView.addSubview(toViewController.view)
-        containerView.sendSubviewToBack(toViewController.view)
+        containerView.sendSubview(toBack: toViewController.view)
         
-        let snapshotView = fromViewController.view.snapshotViewAfterScreenUpdates(false)
-        snapshotView.frame = fromViewController.view.frame
-        containerView.addSubview(snapshotView)
+        let snapshotView = fromViewController.view.snapshotView(afterScreenUpdates: false)
+        snapshotView?.frame = fromViewController.view.frame
+        containerView.addSubview(snapshotView!)
         
         fromViewController.view.removeFromSuperview()
         
-        UIView.animateWithDuration(transitionDuration(transitionContext),
+        UIView.animate(withDuration: transitionDuration(using: transitionContext),
             animations: {
-                snapshotView.frame = finalFrame
-                snapshotView.alpha = 0
-            }) { finished in
-                snapshotView.removeFromSuperview()
+                snapshotView?.frame = finalFrame
+                snapshotView?.alpha = 0
+            }, completion: { finished in
+                snapshotView?.removeFromSuperview()
                 transitionContext.completeTransition(true)
-        }
+        }) 
     }
 }

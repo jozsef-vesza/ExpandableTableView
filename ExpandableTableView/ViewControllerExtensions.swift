@@ -11,9 +11,9 @@ import UIKit
 protocol ViewModelType {}
 
 protocol ViewControllerInitializable {
-    typealias T
-    typealias U: ViewModelType
-    static func instanceWithViewModel(viewModel: U) -> T?
+    associatedtype T
+    associatedtype U: ViewModelType
+    static func instanceWithViewModel(_ viewModel: U) -> T?
 }
 
 extension UIViewController {
@@ -22,11 +22,11 @@ extension UIViewController {
         return self.instanceFromStoryboardWithName()
     }
     
-    class func instanceFromStoryboardWithName(storyboardName: String = "Main", fromBundle bundle: NSBundle? = nil) -> UIViewController? {
+    class func instanceFromStoryboardWithName(_ storyboardName: String = "Main", fromBundle bundle: Bundle? = nil) -> UIViewController? {
         let storyboardId = NSStringFromClass(self)
         
-        if let strippedId = storyboardId.componentsSeparatedByCharactersInSet(NSCharacterSet.punctuationCharacterSet()).last {
-            return UIStoryboard(name: storyboardName, bundle: bundle).instantiateViewControllerWithIdentifier(strippedId) as? UIViewController
+        if let strippedId = storyboardId.components(separatedBy: CharacterSet.punctuationCharacters).last {
+            return UIStoryboard(name: storyboardName, bundle: bundle).instantiateViewController(withIdentifier: strippedId) as? UIViewController
         }
         return nil
     }

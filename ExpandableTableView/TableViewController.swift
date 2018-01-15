@@ -20,13 +20,13 @@ class TableViewController: UITableViewController {
     var viewModel: TableViewModel!
     var buttonRect: CGRect?
     
-    var expandedIndexPath: NSIndexPath? {
+    var expandedIndexPath: IndexPath? {
         didSet {
             switch expandedIndexPath {
-            case .Some(let index):
-                tableView.reloadRowsAtIndexPaths([index], withRowAnimation: UITableViewRowAnimation.Automatic)
-            case .None:
-                tableView.reloadRowsAtIndexPaths([oldValue!], withRowAnimation: UITableViewRowAnimation.Automatic)
+            case .some(let index):
+                tableView.reloadRows(at: [index], with: UITableViewRowAnimation.automatic)
+            case .none:
+                tableView.reloadRows(at: [oldValue!], with: UITableViewRowAnimation.automatic)
             }
         }
     }
@@ -38,17 +38,17 @@ class TableViewController: UITableViewController {
         tableView.contentInset.top = statusbarHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 125
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
     // MARK: - Table view data source
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ExpandableTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ExpandableTableViewCell
         
         cell.mainTitle = viewModel.titleForRow(indexPath.row)
         cell.indexPath = indexPath
@@ -56,17 +56,17 @@ class TableViewController: UITableViewController {
             
             if let destination = DetailViewController.instanceWithViewModel(DetailViewModel(photoStore: self.viewModel.photoStore, selectedIndex: index.row)) {
             
-                let newRect = cell.convertRect(button.frame, toView: nil)
+                let newRect = cell.convert(button.frame, to: nil)
                 self.buttonRect = newRect
                 destination.transitioningDelegate = self
                 
-                self.presentViewController(destination, animated: true, completion: nil)
+                self.present(destination, animated: true, completion: nil)
             }
             
         }
         
         switch expandedIndexPath {
-        case .Some(let expandedIndexPath) where expandedIndexPath == indexPath:
+        case .some(let expandedIndexPath) where expandedIndexPath == indexPath:
             cell.showsDetails = true
         default:
             cell.showsDetails = false
@@ -77,15 +77,15 @@ class TableViewController: UITableViewController {
     
     // MARK: - Table view delegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         
         switch expandedIndexPath {
-        case .Some(_) where expandedIndexPath == indexPath:
+        case .some(_) where expandedIndexPath == indexPath:
             expandedIndexPath = nil
-        case .Some(let expandedIndex) where expandedIndex != indexPath:
+        case .some(let expandedIndex) where expandedIndex != indexPath:
             expandedIndexPath = nil
-            self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+            self.tableView(tableView, didSelectRowAt: indexPath)
         default:
             expandedIndexPath = indexPath
         }
@@ -94,18 +94,18 @@ class TableViewController: UITableViewController {
 
 extension TableViewController: UIViewControllerTransitioningDelegate {
     
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return toDetailViewController
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return backToMainViewController
     }
 }
 
 extension TableViewController: ViewControllerInitializable {
     
-    static func instanceWithViewModel(viewModel: TableViewModel) -> TableViewController? {
+    static func instanceWithViewModel(_ viewModel: TableViewModel) -> TableViewController? {
         if let instance = self.instance() as? TableViewController {
             instance.viewModel = viewModel
             return instance

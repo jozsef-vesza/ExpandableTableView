@@ -10,29 +10,29 @@ import UIKit
 
 class ToDetailViewPresentationController: NSObject, UIViewControllerAnimatedTransitioning {
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as! TableViewController
-        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as! DetailViewController
-        let finalFrame = transitionContext.finalFrameForViewController(toViewController)
-        let containerView = transitionContext.containerView()
+        let fromViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from) as! TableViewController
+        let toViewController = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to) as! DetailViewController
+        let finalFrame = transitionContext.finalFrame(for: toViewController)
+        let containerView = transitionContext.containerView
         
         toViewController.view.frame = fromViewController.buttonRect!
-        toViewController.view.transform = CGAffineTransformMakeScale(0.0, 0.0)
+        toViewController.view.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
         toViewController.view.alpha = 0
         containerView.addSubview(toViewController.view)
         
-        UIView.animateWithDuration(transitionDuration(transitionContext),
+        UIView.animate(withDuration: transitionDuration(using: transitionContext),
             animations: {
-                toViewController.view.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                toViewController.view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 toViewController.view.frame = finalFrame
                 toViewController.view.alpha = 1
-            }) { finished in
+            }, completion: { finished in
                 transitionContext.completeTransition(true)
-        }
+        }) 
     }
 }
