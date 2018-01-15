@@ -11,8 +11,8 @@ import UIKit
 typealias ActionHandler = (UIButton, IndexPath) -> Void
 
 let detailViewDefaultHeight: CGFloat = 44
-let lowLayoutPriority: Float = 250
-let highLayoutPriority: Float = 999
+let lowLayoutPriority = UILayoutPriority(250)
+let highLayoutPriority = UILayoutPriority(999)
 
 class ExpandableTableViewCell: UITableViewCell {
 
@@ -25,7 +25,7 @@ class ExpandableTableViewCell: UITableViewCell {
         }
     }
     
-    var detailButtonActionHandler: ActionHandler = { _ in }
+    var detailButtonActionHandler: ActionHandler = { _,_  in }
     var indexPath = IndexPath()
     
     override func awakeFromNib() {
