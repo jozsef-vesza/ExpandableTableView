@@ -16,8 +16,8 @@ let highLayoutPriority = UILayoutPriority(999)
 
 class ExpandableTableViewCell: UITableViewCell {
 
-    @IBOutlet fileprivate weak var mainTitleLabel: UILabel!
-    @IBOutlet fileprivate weak var detailViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var mainTitleLabel: UILabel!
+    @IBOutlet private weak var detailViewHeightConstraint: NSLayoutConstraint!
     
     var showsDetails = false {
         didSet {
@@ -39,7 +39,7 @@ class ExpandableTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction fileprivate func didPressDetailButton(_ sender: UIButton) {
+    @IBAction private func didPressDetailButton(_ sender: UIButton) {
         detailButtonActionHandler(sender, indexPath)
     }
 }

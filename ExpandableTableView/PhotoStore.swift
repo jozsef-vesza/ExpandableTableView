@@ -12,19 +12,19 @@ class PhotoStore: NSObject {
     
     static let sharedInstance = PhotoStore()
     
-    fileprivate static let titles = [
+    private static let titles = [
         "Photo 1",
         "Photo 2",
         "Photo 3",
     ]
     
-    fileprivate static let authors = [
+    private static let authors = [
         "Anthony DELANOIX",
         "Modestas Urbonas",
         "Shlomit Wolf",
     ]
     
-    fileprivate static let images = [
+    private static let images = [
         UIImage(named: "image-1"),
         UIImage(named: "image-2"),
         UIImage(named: "image-3"),

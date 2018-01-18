@@ -10,8 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet fileprivate weak var authorName: UILabel!
-    @IBOutlet fileprivate weak var photoImageView: UIImageView!
+    @IBOutlet private weak var authorName: UILabel!
+    @IBOutlet private weak var photoImageView: UIImageView!
     
     var viewModel: DetailViewModel!
     
@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
         photoImageView.image = viewModel.photoImage
     }
     
-    @IBAction fileprivate func doneButtonPressed(_ sender: UIButton) {
+    @IBAction private func doneButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
 }
