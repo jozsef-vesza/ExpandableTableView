@@ -21,14 +21,14 @@ class DetailViewController: UIViewController {
         photoImageView.image = viewModel.photoImage
     }
     
-    @IBAction private func doneButtonPressed(sender: UIButton) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction private func doneButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
 
 extension DetailViewController: ViewControllerInitializable {
     
-    static func instanceWithViewModel(viewModel: DetailViewModel) -> DetailViewController? {
+    static func instanceWithViewModel(_ viewModel: DetailViewModel) -> DetailViewController? {
         if let instance = self.instance() as? DetailViewController {
             instance.viewModel = viewModel
             return instance

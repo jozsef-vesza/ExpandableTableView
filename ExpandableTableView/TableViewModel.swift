@@ -21,11 +21,11 @@ class TableViewModel: NSObject, ViewModelType {
         return photoStore.photos.count
     }
     
-    func photoForRow(row: Int) -> Photo {
+    func photoForRow(_ row: Int) -> Photo {
         return photoStore.photos[row]
     }
     
-    func titleForRow(row: Int) -> String {
+    func titleForRow(_ row: Int) -> String {
         return photoStore.photos[row].title
     }
 }
